@@ -1,0 +1,31 @@
+Student Name:   Jordan Godau
+Student ID:     A00954606
+
+PROGRAM PSEUDO CODE
+
+Part 1.
+ascii2hamming(stdin, prefix, parity)
+    GET stdin_message;
+    FOR each char IN stdin_message:
+        SET parity_bits[] = compute_parity_bits(char);
+        SET bool_array = dc_to_binary8(char);
+        FOR each bit, message_index IN enumerate(bool_array):
+            write_bits("prefix-{message_index}.hamming", bit);
+        FOR each bit, hamming_index IN enumerate(hamming_bits):
+            write_bits("prefix-{hamming_index}.hamming", bit);
+
+
+Part 2.
+ascii2hamming(prefix, parity)
+    FOR i IN [0:11]:
+        all_bytes[] = read_all_bytes("{prefix}-{i}.hamming");
+        FOR byte IN all_bytes:
+            SET parity_checks[] = check_parity(byte);
+            SET parity_flags[] = set_flags(byte, parity_checks[]);
+            SET message = perform_hamming(byte, parity_flags);
+            print_message(message);
+
+
+
+
+
