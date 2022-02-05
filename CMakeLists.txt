@@ -9,12 +9,8 @@ project(dc_shell
         LANGUAGES C)
 
 set(HEADER_LIST
-        "${dc_shell_SOURCE_DIR}/include/common.h"
-        "${dc_shell_SOURCE_DIR}/include/dc_shell.h"
         "${dc_shell_SOURCE_DIR}/include/builtins.h"
         "${dc_shell_SOURCE_DIR}/include/command.h"
-        "${dc_shell_SOURCE_DIR}/include/common.h"
-        "${dc_shell_SOURCE_DIR}/include/dc_shell.h"
         "${dc_shell_SOURCE_DIR}/include/execute.h"
         "${dc_shell_SOURCE_DIR}/include/input.h"
         "${dc_shell_SOURCE_DIR}/include/shell.h"
@@ -23,14 +19,19 @@ set(HEADER_LIST
         "${dc_shell_SOURCE_DIR}/include/util.h"
         )
 
-set(SOURCE_LIST
-        "${dc_shell_SOURCE_DIR}/src/common.c"
+set(COMMON_SOURCE_LIST
+        "${dc_shell_SOURCE_DIR}/src/builtins.c"
+        "${dc_shell_SOURCE_DIR}/src/command.c"
+        "${dc_shell_SOURCE_DIR}/src/execute.c"
+        "${dc_shell_SOURCE_DIR}/src/input.c"
+        "${dc_shell_SOURCE_DIR}/src/shell.c"
+        "${dc_shell_SOURCE_DIR}/src/shell_impl.c"
+        "${dc_shell_SOURCE_DIR}/src/util.c"
         )
 
-set(SHELL_MAIN_SOURCE
-        "${dc_shell_SOURCE_DIR}/src/dc_shell.c"
+set(MAIN_SOURCE
+        "${dc_shell_SOURCE_DIR}/src/main.c"
         )
-
 
 ### Require out-of-source builds
 # this still creates a CMakeFiles directory and CMakeCache.txt- can we delete them?
