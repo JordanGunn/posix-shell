@@ -1,6 +1,17 @@
 #ifndef TEMPLATE_COMMON_H
 #define TEMPLATE_COMMON_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <dc_posix/dc_string.h>
+
+#define SM_BUFF 256
+#define MD_BUFF 512
+#define LG_BUFF 1024
+#define XL_BUFF 2048
+
 /*
  * This file is part of dc_dump.
  *

@@ -21,6 +21,7 @@
 #include <dc_posix/dc_posix_env.h>
 #include <dc_posix/dc_stdlib.h>
 #include <stdio.h>
+#include "util.h"
 
 /**
  * Read the command line from the user.
@@ -32,5 +33,24 @@
  * @return The command line that the user entered.
  */
 char *read_command_line(const struct dc_posix_env *env, struct dc_error *err, FILE *stream, size_t *line_size);
+
+
+/**
+ * Trim whitespace and newline characters from string
+ *
+ * @param str - Sequences of chars to trim.
+ */
+void trim(char * str);
+
+
+/**
+ * Check is character is "fluff".
+ *
+ * Checks if character is whitespace, tab, newline, etc.
+ *
+ * @param character - a character
+ * @return - true or false
+ */
+bool is_fluff(char character);
 
 #endif // DC_SHELL_INPUT_H

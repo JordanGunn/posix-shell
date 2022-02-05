@@ -22,6 +22,11 @@
 #include <dc_posix/dc_stdlib.h>
 #include <dc_posix/dc_string.h>
 #include <getopt.h>
+#include <memory.h>
+#include <util.h>
+#include <input.h>
+#include <command.h>
+#include <builtins.h>
 
 struct application_settings
 {
@@ -31,12 +36,11 @@ struct application_settings
 
 static struct dc_application_settings *create_settings(const struct dc_posix_env *env, struct dc_error *err);
 
-static int
-destroy_settings(const struct dc_posix_env *env, struct dc_error *err, struct dc_application_settings **psettings);
+static int destroy_settings(const struct dc_posix_env *env, struct dc_error *err, struct dc_application_settings **psettings);
 
 static int run(const struct dc_posix_env *env, struct dc_error *err, struct dc_application_settings *settings);
 
-int        main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     dc_posix_tracer             tracer;
     dc_error_reporter           reporter;
@@ -71,7 +75,7 @@ int        main(int argc, char *argv[])
 
 static struct dc_application_settings *create_settings(const struct dc_posix_env *env, struct dc_error *err)
 {
-    static bool                  default_verbose = false;
+    static bool default_verbose = false;
     struct application_settings *settings;
 
     DC_TRACE(env);
@@ -146,7 +150,7 @@ static int run(const struct dc_posix_env                              *env,
     int ret_val;
 
     DC_TRACE(env);
-    ret_val = run_shell(env, err);
+    ret_val = run_shell(env, err, stdin, stdout, stderr);
 
     return ret_val;
 }

@@ -20,6 +20,10 @@
 
 #include "execute.h"
 #include "shell.h"
+#include "common.h"
+#include "util.h"
+#include "input.h"
+#include "execute.h"
 
 /**
  * Set up the initial state:

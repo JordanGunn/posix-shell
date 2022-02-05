@@ -30,8 +30,31 @@
  * @param env the posix environment.
  * @param err the error object
  * @param command the command information
+ * @param errstream the stream to print error messages to
  */
 void builtin_cd(const struct dc_posix_env *env, struct dc_error *err,
-                struct command *command);
+                struct command *command, FILE * errstream);
+
+
+/**
+ * Convert any instance of "~" to "home" in a string.
+ *
+ * @param  env the posix environment.
+ * @param  err the error object
+ * @param  str string to convert "~" to "home"
+ * @return pointer to new string with conversion performed.
+ */
+char * tilde_to_home(const struct dc_posix_env *env, struct dc_error *err, char * str);
+
+
+/**
+ * Exit the shell.
+ *
+ * @param  env      the posix environment.
+ * @param  err      the error object
+ * @param command   the command information
+ */
+void builtin_exit(const struct dc_posix_env *env, struct dc_error *err,
+                  struct command *command);
 
 #endif // DC_SHELL_BUILTINS_H

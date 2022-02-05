@@ -21,7 +21,15 @@
 #include "shell.h"
 #include "state.h"
 #include <dc_posix/dc_posix_env.h>
+#include <dc_util/strings.h>
+#include <dc_posix/dc_stdlib.h>
+#include <dc_posix/dc_string.h>
+#include <dc_posix/dc_stdio.h>
+#include <dc_posix/dc_fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "command.h"
+#include "common.h"
 
 /**
  * Get the prompt to use.
@@ -79,5 +87,38 @@ void display_state(const struct dc_posix_env *env, const struct state *state, FI
  * @param stream the stream to display the state on,
  */
 char *state_to_string(const struct dc_posix_env *env,  struct dc_error *err, const struct state *state);
+
+
+/**
+ * Get number of paths in PATH env. var.
+ *
+ * @pre     Argument must be a string of colon (:) separated
+ *          paths obtained from call to getenv("PATH").
+ * @post    Will return number of distinct paths in PATH env.
+ *
+ * @param path_str  - A string of colon seperated paths.
+ * @return          - Number of paths in PATH.
+ */
+int get_num_env_paths(char *path_str);
+
+
+/**
+ * Pretty-print all paths in PATH env variable.
+ *
+ * Prints all paths in PATH in the format
+ * "[ path1, path2, path ]"
+ *
+ * @param path - Char sequence returned from getenv("PATH")
+ */
+void print_paths(char ** path);
+
+/**
+ * Free all dynamically allocated memory in state.
+ *
+ * @param env the posix environment.
+ * @param err the error object.
+ * @param state state to pass around
+ */
+void do_destroy_state(const struct dc_posix_env *env, struct dc_error *err, struct state *state);
 
 #endif // DC_SHELL_UTIL_H
